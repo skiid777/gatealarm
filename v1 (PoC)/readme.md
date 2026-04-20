@@ -1,4 +1,4 @@
-# Gate Alarm v1 — Proof of Concept
+# Gate Alarm v1 — Proof of Concept not ready for normal use
 
 > This is the v1 POC release of the Gate Alarm project. It is a minimal, stable baseline — not a final product. The goal of v1 is to validate the hardware setup and Home Assistant integration before adding alarm logic, LEDs, diagnostics, and hardware protection in future versions.
 
