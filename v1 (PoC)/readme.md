@@ -144,19 +144,6 @@ Action:   siren.turn_on → your siren
 
 All through HA UI — no code needed.
 
----
-
-## File structure
-
-```
-gate-alarm/
-├── gate_alarm_v1.yaml   ← ESPHome config
-├── secrets.yaml         ← credentials (never commit!)
-├── README.md            ← main project README
-└── README_v1.md         ← this file
-```
-
----
 
 ## Why secrets.yaml is separate
 
