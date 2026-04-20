@@ -1,10 +1,10 @@
-# Gate Alarm v1 — ESP32-C6 + ESPHome
+# Gate Alarm v1 — ESP-WROOM-32U + ESPHome
 
-A minimal smart gate sensor built on **ESP32-C6** with **ESPHome**, integrating natively into **Home Assistant**. This is version 1 — the simplest possible foundation. It detects whether the gate is open or closed and reports the state to Home Assistant in real time.
+A minimal smart gate sensor built on **ESP-WROOM-32U** with **ESPHome**, integrating natively into **Home Assistant**. This is version 1 — the simplest possible foundation. It detects whether the gate is open or closed and reports the state to Home Assistant in real time.
 
 > **Author:** skiid777
-> **Board:** ESP32-C6 DevKitC-1
-> **Framework:** ESPHome + ESP-IDF
+> **Board:** ESP-WROOM-32U DevKitC-1
+> **Framework:** ESPHome + Arduino
 > **Version:** v1 — minimal
 
 ---
@@ -25,7 +25,7 @@ Nothing more, nothing less. No LEDs, no alarm logic, no automations built in. Th
 ```
 Magnetic sensor (GPIO4)
         ↓
-ESP32-C6 reads pin state
+ESP-WROOM-32U reads pin state
         ↓ WiFi (local network)
 Raspberry Pi running Home Assistant
         ↓
@@ -46,7 +46,7 @@ The sensor is **NC (normally closed)**:
 
 | Component | Details |
 |---|---|
-| ESP32-C6 DevKitC-1 | Main microcontroller |
+| ESP-WROOM-32U DevKitC-1 | Main microcontroller |
 | Magnetic contact sensor (NC) | Gate open/close detection |
 | 5V power supply | Stable power at the gate |
 
@@ -57,7 +57,7 @@ No LEDs, no relays, no additional components needed for v1.
 ## Wiring
 
 ```
-ESP32-C6        Magnetic sensor
+ESP-WROOM-32U        Magnetic sensor
 ─────────────────────────────────
 GPIO4   ────── Signal wire
 GND     ────── GND wire
@@ -114,7 +114,7 @@ In ESPHome dashboard → **+ New device** → give it a name → click **Edit** 
 
 ### 4. Flash for the first time
 
-Connect ESP32-C6 via USB to your computer → in ESPHome click **Install** → **Plug into this computer**
+Connect ESP-WROOM-32U via USB to your computer → in ESPHome click **Install** → **Plug into this computer**
 
 > After first flash, all future updates can be done **wirelessly** — no USB needed.
 
