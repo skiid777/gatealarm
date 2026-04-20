@@ -36,8 +36,8 @@ binary_sensor:
     id: gate_sensor
     device_class: garage_door
     filters:
-      - delayed_on: 50ms
-      - delayed_off: 50ms
+      - delayed_on: 200ms
+      - delayed_off: 200ms
 
   - platform: status
     name: "Gate Online"
