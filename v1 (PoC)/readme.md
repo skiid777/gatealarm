@@ -19,17 +19,7 @@
 Nothing more. No alarm logic, no LEDs, no automations built in.
 
 ---
-
-## What this version does NOT do
-
-- No alarm triggering
-- No LED indicators
-- No push notifications
-- No hardware diagnostics
-- No offline mode
-
 All of the above come in future versions — see the main [README.md](README.md) for the full roadmap.
-
 ---
 
 ## Hardware
