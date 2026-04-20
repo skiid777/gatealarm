@@ -57,6 +57,7 @@ HA app on your phone
 | v3 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
 | v4 | 🔄 Planned | Offline mode, hardware error auto-restart |
 | v5 | 🔄 Planned | Supercapacitor power backup detection and more |
+| v6 | 🔄 Planned | IR| 
 
 
 ## License
