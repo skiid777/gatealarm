@@ -1,153 +1,76 @@
-# Gate Alarm v1 — ESP32-C6 + ESPHome
+# Gate Alarm — ESP32-C6 + ESPHome + Home Assistant
 
-A minimal smart gate sensor built on **ESP32-C6** with **ESPHome**, integrating natively into **Home Assistant**. This is version 1 — the simplest possible foundation. It detects whether the gate is open or closed and reports the state to Home Assistant in real time.
+A smart gate alarm system built on **ESP32-C6** with **ESPHome**, integrating natively into **Home Assistant**. Designed for residential use — detects gate open/close events and triggers alerts, automations, and sirens through Home Assistant.
 
 > **Author:** skiid777
 > **Board:** ESP32-C6 DevKitC-1
 > **Framework:** ESPHome + ESP-IDF
-> **Version:** v1 — minimal
 
 ---
 
-## What it does
+## Overview
 
-- Connects to WiFi
-- Reads a magnetic contact sensor (reed switch / magnetic contactor) on GPIO4
-- Reports `open` or `closed` state to Home Assistant instantly
-- Shows whether the ESP is online in HA
+This project turns a simple magnetic contact sensor into a fully featured smart gate alarm. It runs locally — no cloud, no subscriptions, no third-party servers. Everything happens on your home network through Home Assistant.
 
-Nothing more, nothing less. No LEDs, no alarm logic, no automations built in. Those come in later versions.
-
----
-
-## How it works
-
-```
-Magnetic sensor (GPIO4)
-        ↓
-ESP32-C6 reads pin state
-        ↓ WiFi (local network)
-Raspberry Pi running Home Assistant
-        ↓
-HA dashboard shows "open" or "closed"
-        ↓
-Your automations decide what to do next
-```
-
-The sensor is **NC (normally closed)**:
-- Magnet near sensor = circuit closed = GPIO LOW = **gate closed**
-- Magnet away from sensor = circuit open = GPIO HIGH = **gate open**
-
-`inverted: true` in the config converts this so HA sees it correctly.
+The system is built in versions, starting from a minimal sensor and progressively adding alarm logic, LED indicators, diagnostics, and hardware protection.
 
 ---
 
 ## Hardware
 
-| Component | Details |
+| Component | Role |
 |---|---|
 | ESP32-C6 DevKitC-1 | Main microcontroller |
 | Magnetic contact sensor (NC) | Gate open/close detection |
-| 5V power supply | Stable power at the gate |
-
-No LEDs, no relays, no additional components needed for v1.
+| 4x LED (green, blue, yellow, red) | System status indicators |
+| Supercapacitor (10F) | Power backup on mains cut |
+| 5V power supply | Stable power at gate |
 
 ---
 
-## Wiring
+## Features
+
+- Real-time gate open/close detection
+- Multi-phase alarm timeline with false alarm protection
+- 4-LED status system — instant visual feedback
+- WiFi diagnostics with push notifications
+- Hardware health monitoring (CPU temp, RAM, WiFi signal)
+- Unexpected restart detection
+- Police light effect on critical errors
+- Auto-restart after hardware failure
+- Auto-reset after gate closes
+- One-time-use alarm model — closing gate does not reset alarm
+- Supercapacitor backup — alerts even when power is cut
+- Fully local — no cloud dependency
+
+---
+
+## How it integrates with Home Assistant
 
 ```
-ESP32-C6        Magnetic sensor
-─────────────────────────────────
-GPIO4   ────── Signal wire
-GND     ────── GND wire
+Magnetic sensor (GPIO4)
+        ↓
+ESP32-C6 (ESPHome firmware)
+        ↓ WiFi — local network
+Raspberry Pi (Home Assistant)
+        ↓
+Automations → siren, push notifications, camera
+        ↓
+HA app on your phone
 ```
 
-The internal pull-up resistor is used (`pullup: true`) — no external resistor needed.
-
 ---
 
-## Pin assignment
+## Roadmap
 
-| GPIO | Role |
-|---|---|
-| GPIO4 | Magnetic contact sensor (NC) |
-
----
-
-## False alarm protection
-
-Two debounce filters prevent false triggers from vibration or contact bounce:
-
-```yaml
-filters:
-  - delayed_on: 200ms   # gate must be open for 200ms before reporting
-  - delayed_off: 200ms  # gate must be closed for 200ms before reporting
-```
-
-Short opens (wind, vibration) under 200ms are completely ignored.
-
----
-
-## Installation
-
-### 1. Install ESPHome addon in Home Assistant
-
-Settings → Add-ons → Add-on store → search **ESPHome** → Install → Start
-
-### 2. Create secrets file
-
-In ESPHome dashboard → top right corner → **Secrets** → add:
-
-```yaml
-wifi_ssid: "YourNetworkName"
-wifi_password: "YourPassword"
-api_key: ""
-ota_password: "gate123"
-```
-
-> `api_key` will be generated automatically on first compile — leave it empty for now.
-
-### 3. Create new device
-
-In ESPHome dashboard → **+ New device** → give it a name → click **Edit** → paste the code from `gate_alarm_v1.yaml` → **Save**
-
-### 4. Flash for the first time
-
-Connect ESP32-C6 via USB to your computer → in ESPHome click **Install** → **Plug into this computer**
-
-> After first flash, all future updates can be done **wirelessly** — no USB needed.
-
-### 5. Add to Home Assistant
-
-After flashing, HA will auto-discover the device:
-
-**Settings → Integrations → ESPHome → Configure**
-
----
-
-## What you see in Home Assistant
-
-| Entity | Type | Description |
+| Version | Status | Description |
 |---|---|---|
-| Gate | Binary sensor (garage_door) | `open` or `closed` in real time |
-| Gate Online | Binary sensor | whether ESP is connected |
-
----
-
-## Creating automations in HA
-
-The sensor reports state — what happens next is up to your automations.
-
-**Example — trigger siren when gate opens:**
-
-Settings → Automations → Create automation:
-```
-Trigger:  Gate → changes to "open"
-Action:   siren.turn_on → your siren entity
-```
-
-All done through the HA UI — no code needed.
+| v1 | ✅ Done | Minimal sensor — gate open/closed state in HA |
+| v2 | 🔄 Planned | Alarm logic — false alarm window, warning phase, auto-reset |
+| v3 | 🔄 Planned | 4 LED indicators — full visual status system |
+| v4 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
+| v5 | 🔄 Planned | Offline mode, police effect, auto-restart |
+| v6 | 🔄 Planned | Supercapacitor power backup detection |
 
 ---
 
@@ -155,28 +78,20 @@ All done through the HA UI — no code needed.
 
 ```
 gate-alarm/
-├── gate_alarm_v1.yaml   ← ESPHome configuration
-├── secrets.yaml         ← WiFi credentials (never commit this!)
-└── README.md            ← this file
-```
-
-> Add `secrets.yaml` to `.gitignore` — never push it to GitHub:
-> ```
-> secrets.yaml
-> ```
-
----
-
-## Why secrets.yaml is a separate file
-
-The `secrets.yaml` file keeps sensitive data (WiFi password, API keys) separate from the main code. This means you can share or publish your code without exposing your credentials.
-
-When ESPHome compiles the code, it replaces every `!secret` reference with the actual value from `secrets.yaml` before building the firmware. The ESP never sees the word "secret" — it gets the real value baked into the firmware.
-
-```
-gate_alarm_v1.yaml          secrets.yaml
-!secret wifi_ssid     →     wifi_ssid: "YourNetwork"
-!secret wifi_password →     wifi_password: "YourPassword"
+├── gate_alarm_v1.yaml       ← v1 ESPHome config (minimal)
+├── secrets.yaml             ← credentials (never commit!)
+└── README.md                ← this file
 ```
 
 ---
+
+## License
+
+MIT License — free to use, modify and distribute.
+Keep original author credits.
+
+---
+
+<p align="center">
+Built with ESPHome · Runs on ESP32-C6 · Integrates with Home Assistant
+</p>
