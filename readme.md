@@ -65,7 +65,7 @@ HA app on your phone
 
 | Version | Status | Description |
 |---|---|---|
-| v1 | ✅ Done | Minimal sensor — gate open/closed state in HA |
+| v1 | ✅ Done | **Lightweight** — minimal, stable, production ready. Magnetic sensor reporting open/closed state to HA in real time. No extras, just works. |
 | v2 | 🔄 Planned | Alarm logic — false alarm window, warning phase, auto-reset |
 | v3 | 🔄 Planned | 4 LED indicators — full visual status system |
 | v4 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
