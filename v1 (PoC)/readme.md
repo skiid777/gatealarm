@@ -108,7 +108,7 @@ ota_password: "gate123"
 
 ### 3. Create new device
 
-ESPHome → **+ New device** → Edit → paste `gate_alarm_v1.yaml` → Save
+ESPHome → **+ New device** → Edit → paste `v1 code ESP-WROOM-32U.yaml` → Save
 
 ### 4. Flash
 
