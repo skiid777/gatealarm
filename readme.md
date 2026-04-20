@@ -54,10 +54,9 @@ HA app on your phone
 |---|---|---|
 | v1 | ✅ POC | **Proof of concept** — minimal, stable baseline. Magnetic sensor reporting open/closed state to HA in real time. Not a final product — foundation for future versions. |
 | v2 | 🔄 Planned | Alarm logic — false alarm window, warning phase, auto-reset |
-| v3 | 🔄 Planned | 4 LED indicators — full visual status system |
-| v4 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
-| v5 | 🔄 Planned | Offline mode, police effect, auto-restart |
-| v6 | 🔄 Planned | Supercapacitor power backup detection |
+| v3 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
+| v4 | 🔄 Planned | Offline mode, police effect, auto-restart |
+| v5 | 🔄 Planned | Supercapacitor power backup detection |
 
 ---
 
