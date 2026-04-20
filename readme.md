@@ -58,18 +58,6 @@ HA app on your phone
 | v4 | 🔄 Planned | Offline mode, hardware error auto-restart |
 | v5 | 🔄 Planned | Supercapacitor power backup detection and more |
 
----
-
-## File structure
-
-```
-gate-alarm/
-├── gate_alarm_v1.yaml       ← v1 ESPHome config (POC)
-├── secrets.yaml             ← credentials (never commit!)
-└── README.md                ← this file
-```
-
----
 
 ## License
 
