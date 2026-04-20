@@ -16,31 +16,19 @@ The system is built in versions, starting from a minimal sensor and progressivel
 
 ---
 
-## Hardware
+## Hardware for v1
 
 | Component | Role |
 |---|---|
 | ESP32-C6 DevKitC-1 | Main microcontroller |
 | Magnetic contact sensor (NC) | Gate open/close detection |
-| 4x LED (green, blue, yellow, red) | System status indicators |
-| Supercapacitor (10F) | Power backup on mains cut |
-| 5V power supply | Stable power at gate |
+
 
 ---
 
 ## Features
 
 - Real-time gate open/close detection
-- Multi-phase alarm timeline with false alarm protection
-- 4-LED status system — instant visual feedback
-- WiFi diagnostics with push notifications
-- Hardware health monitoring (CPU temp, RAM, WiFi signal)
-- Unexpected restart detection
-- Police light effect on critical errors
-- Auto-restart after hardware failure
-- Auto-reset after gate closes
-- One-time-use alarm model — closing gate does not reset alarm
-- Supercapacitor backup — alerts even when power is cut
 - Fully local — no cloud dependency
 
 ---
