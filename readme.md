@@ -1,75 +1,82 @@
-# Gate Alarm — ESP32 + ESPHome + Home Assistant
+# ESP Gate Alarm
 
-A smart gate alarm system built on **ESP32** with **ESPHome**, integrating natively into **Home Assistant**. Designed for residential use — detects gate open/close events and triggers alerts, automations, and sirens through Home Assistant.
+![Version](https://img.shields.io/badge/version-v1--POC-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
+![ESPHome](https://img.shields.io/badge/built%20with-ESPHome-blue)
+![Board](https://img.shields.io/badge/board-ESP32-red)
+![HA](https://img.shields.io/badge/requires-Home%20Assistant-41BDF5)
 
-> **Author:** skiid777
-> **Board:** ESP32
-> **Framework:** ESPHome + Arduino
+A smart gate alarm system built on **ESP32** with **ESPHome**, integrating natively into **Home Assistant**. Open source, locally hosted, zero cloud dependency. Detects gate open/close events and triggers automations, push notifications and sirens through Home Assistant.
+
+> **Author:** skiid777  
+> **Board:** ESP32  
+> **Status:** v1 — Proof of Concept  
+> **License:** MIT
 
 ---
 
 ## Overview
 
-This project turns a simple magnetic contact sensor into a fully featured smart gate alarm. It runs locally — no cloud, no subscriptions, no third-party servers. Everything happens on your home network through Home Assistant.
+This project turns a simple magnetic contact sensor (kontaktron) into a smart gate alarm. Everything runs on your local network — no cloud, no subscriptions, no third-party servers.
 
-The system is built in versions, starting from a minimal sensor and progressively adding alarm logic, LED indicators, diagnostics, and hardware protection.
-
----
-
-## Hardware
-
-| Component | Role |
-|---|---|
-| ESP32 | Main microcontroller |
-| Magnetic contact sensor (NC) | Gate open/close detection |
-| 4x LED (green, blue, yellow, red) | System status indicators |
-| Supercapacitor (10F / 5.5V) | Power backup on mains cut |
-| Diode Schottky 1N5817 | Protects supercap discharge direction |
-| 5V power supply | Stable power at gate |
+Built in progressive versions — v1 is the foundation. Each release adds a new layer on top.
 
 ---
 
-## Features
+## Requirements
 
-- Real-time gate open/close detection
-- Multi-phase alarm timeline with false alarm protection
-- 4-LED status system — instant visual feedback
-- WiFi diagnostics with push notifications
-- Hardware health monitoring (CPU temp, RAM, WiFi signal)
-- Unexpected restart detection via hardware register
-- Police light effect on critical errors
-- Auto-restart after hardware failure (45s)
-- Auto-reset after gate closes (60s timer)
-- One-time-use alarm model — closing gate does not reset alarm
-- Supercapacitor backup — alerts even when power is cut
-- Fully local — no cloud dependency
+- ESP32 board
+- Magnetic contact sensor (kontaktron, NC type)
+- 5V power supply or soldered power connection
+- Home Assistant instance on local network
+- ESPHome addon installed in Home Assistant
 
 ---
 
-## How it integrates with Home Assistant
+## Home Assistant
 
-```
-Magnetic sensor (GPIO4)
-        ↓
-ESP32 (ESPHome firmware)
-        ↓ WiFi — local network only
-Raspberry Pi (Home Assistant)
-        ↓
-Automations → siren, push notifications, camera
-        ↓
-HA app on your phone — anywhere in the world
+This project integrates natively with **Home Assistant** via the ESPHome integration. Once flashed, the ESP32 is auto-discovered by HA and all entities are available immediately.
+
+From HA you can:
+- See gate state (`open` / `closed`) in real time
+- Build automations — siren, push notifications, camera
+- Monitor ESP connection status
+- Restart ESP remotely
+
+---
+
+## Installation
+
+<details>
+<summary><strong>How to install — click to expand</strong></summary>
+
+### 1. Install ESPHome addon in Home Assistant
+Settings → Add-ons → Add-on store → search **ESPHome** → Install → Start
+
+### 2. Set up secrets
+ESPHome dashboard → top right → **Secrets** → add:
+```yaml
+wifi_ssid: "YourNetworkName"
+wifi_password: "YourPassword"
+api_key: "generate with: openssl rand -base64 32"
+ota_password: "gate123"
 ```
 
----
+### 3. Create device
+ESPHome → **+ New device** → Edit → paste `gate_alarm_v1.yaml` → Save
 
-## Why ESPHome?
+### 4. Flash ESP32
+Connect via USB → ESPHome → **Install** → **Plug into this computer**
 
-| | ESPHome | Arduino IDE |
-|---|---|---|
-| Code | YAML | C++ |
-| HA integration | Automatic | Manual (200+ lines) |
-| OTA updates | WiFi, no USB | USB only |
-| Time to working sensor | 5 minutes | Hours |
+### 5. Add to Home Assistant
+HA will auto-discover the device:
+Settings → Integrations → ESPHome → Configure
+
+> After first flash all updates can be done **wirelessly** — no USB needed.
+
+For full details see [README_v1.md](README_v1.md)
+
+</details>
 
 ---
 
@@ -77,35 +84,18 @@ HA app on your phone — anywhere in the world
 
 | Version | Status | Description |
 |---|---|---|
-| v1 | ✅ POC | **Proof of concept** — minimal, stable baseline. Magnetic sensor reporting open/closed to HA. Not a final product. |
-| v2 | 🔄 Planned | Alarm logic — false alarm window, warning phase, auto-reset |
-| v3 | 🔄 Planned | 4 LED indicators — full visual status system |
-| v4 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
-| v5 | 🔄 Planned | Offline mode, police effect, auto-restart |
-| v6 | 🔄 Planned | Supercapacitor power backup detection |
-
----
-
-## File structure
-
-```
-gate-alarm/
-├── gate_alarm_v1.yaml       ← v1 ESPHome config (POC)
-├── secrets.yaml             ← credentials (never commit!)
-├── README.md                ← this file
-└── README_v1.md             ← detailed v1 documentation
-```
-
-> ⚠️ Never commit `secrets.yaml` to GitHub. Add it to `.gitignore`:
-> ```
-> secrets.yaml
-> ```
+| v1 | ✅ POC | Minimal sensor — gate open/closed state in HA |
+| v2 | 🔄 Planned | Alarm logic |
+| v3 | 🔄 Planned | LED indicators |
+| v4 | 🔄 Planned | Hardware diagnostics |
+| v5 | 🔄 Planned | Offline mode + auto-restart |
+| v6 | 🔄 Planned | Power backup |
 
 ---
 
 ## License
 
-MIT License — free to use, modify and distribute.
+MIT License — free to use, modify and distribute.  
 Keep original author credits.
 
 ---
