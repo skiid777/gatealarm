@@ -3,7 +3,7 @@
 A smart gate alarm system built on **ESP32** with **ESPHome**, integrating natively into **Home Assistant**. Designed for residential use — detects gate open/close events and triggers alerts, automations, and sirens through Home Assistant.
 
 > **Author:** skiid777
-> **Board:** ESP-WROOM-32 DevKit
+> **Board:** ESP32
 > **Framework:** ESPHome + Arduino
 
 ---
@@ -20,7 +20,7 @@ The system is built in versions, starting from a minimal sensor and progressivel
 
 | Component | Role |
 |---|---|
-| ESP32 DevKit (ESP-WROOM-32) | Main microcontroller |
+| ESP32 | Main microcontroller |
 | Magnetic contact sensor (NC) | Gate open/close detection |
 | 4x LED (green, blue, yellow, red) | System status indicators |
 | Supercapacitor (10F / 5.5V) | Power backup on mains cut |
