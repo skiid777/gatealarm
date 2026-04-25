@@ -1,0 +1,17 @@
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO4
+      mode:
+        input: true
+        pullup: true
+      inverted: true
+    name: "Gate"
+    id: gate_sensor
+    device_class: garage_door
+    filters:
+      - delayed_on: 200ms
+      - delayed_off: 200ms
+
+  - platform: status
+    name: "Gate Online"
