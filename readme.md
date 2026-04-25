@@ -1,105 +1,115 @@
-# ESP Gate Alarm
+# Gate Alarm — ESP32 + ESPHome + Home Assistant
 
-![Status](https://img.shields.io/badge/status-active_development-green)
-![Platform](https://img.shields.io/badge/platform-ESPHome-blue)
-![Integration](https://img.shields.io/badge/Home%20Assistant-native-orange)
-![License](https://img.shields.io/badge/license-MIT-lightgrey)
+A smart gate alarm system built on **ESP32** with **ESPHome**, integrating natively into **Home Assistant**. Designed for residential use — detects gate open/close events and triggers alerts, automations, and sirens through Home Assistant.
 
-A local-first smart gate monitoring system built on **ESP32** using **ESPHome**, designed for seamless integration with **Home Assistant**.
-
-It tracks gate open/close state using a magnetic contact sensor and sends updates locally over WiFi. No cloud, no subscriptions, no external services.
-
-> **Author:** skiid777  
-> **Project:** ESP Gate Alarm  
-> **Board:** ESP32 Dev Board  
+> **Author:** skiid777
+> **Board:** ESP-WROOM-32 DevKit
 > **Framework:** ESPHome + Arduino
 
 ---
 
-# Why This Exists
+## Overview
 
-This project exists to solve one simple problem: knowing the gate state at all times.
+This project turns a simple magnetic contact sensor into a fully featured smart gate alarm. It runs locally — no cloud, no subscriptions, no third-party servers. Everything happens on your home network through Home Assistant.
 
-Real-world use cases:
-- gate left open by accident
-- unknown or unauthorized opening
-- no history of gate events
-- basic property monitoring
-
-It is a low-cost, privacy-first, fully local smart home security layer.
-
-Not a certified alarm system replacement — a flexible DIY security/automation base.
+The system is built in versions, starting from a minimal sensor and progressively adding alarm logic, LED indicators, diagnostics, and hardware protection.
 
 ---
 
-# Features
+## Hardware
 
-## Core (v1)
-
-- real-time gate open/close detection
-- magnetic contact sensor (NC)
-- ESP32 ESPHome firmware
-- Home Assistant native integration
-- fully local operation (no cloud)
-- simple binary state (OPEN / CLOSED)
-- instant state updates via WiFi
-- event tracking in Home Assistant
-- external antenna support for stability
-- low-cost hardware design
-- outdoor-ready installation (IP65 enclosure)
+| Component | Role |
+|---|---|
+| ESP32 DevKit (ESP-WROOM-32) | Main microcontroller |
+| Magnetic contact sensor (NC) | Gate open/close detection |
+| 4x LED (green, blue, yellow, red) | System status indicators |
+| Supercapacitor (10F / 5.5V) | Power backup on mains cut |
+| Diode Schottky 1N5817 | Protects supercap discharge direction |
+| 5V power supply | Stable power at gate |
 
 ---
 
-## Home Assistant Features
+## Features
 
-- automatic device discovery
-- entity exposed as binary sensor
-- dashboard integration
-- automation triggers
-- event history logging
-- notification support
-- camera/siren integration ready (future use)
-
----
-
-## Reliability Features (planned / partial)
-
-- WiFi reconnect handling
-- ESPHome watchdog support
-- boot recovery behavior
-- stable state reporting after reboot
+- Real-time gate open/close detection
+- Multi-phase alarm timeline with false alarm protection
+- 4-LED status system — instant visual feedback
+- WiFi diagnostics with push notifications
+- Hardware health monitoring (CPU temp, RAM, WiFi signal)
+- Unexpected restart detection via hardware register
+- Police light effect on critical errors
+- Auto-restart after hardware failure (45s)
+- Auto-reset after gate closes (60s timer)
+- One-time-use alarm model — closing gate does not reset alarm
+- Supercapacitor backup — alerts even when power is cut
+- Fully local — no cloud dependency
 
 ---
 
-## Security & Awareness Features (planned)
+## How it integrates with Home Assistant
 
-- gate open too long detection
-- night-time intrusion alerts
-- activity logging timeline
-- suspicious activity detection rules
-- multiple gate support (future expansion)
-
----
-
-## Hardware Features
-
-- ESP32 main controller
-- NC magnetic sensor input
-- 5V stable power input
-- optional USB / direct solder power
-- IP65+ outdoor enclosure
-- external antenna for range improvement
-- minimal wiring (only sensor lines exposed)
-
----
-
-# System Architecture
-
-```text
-Magnetic Contact Sensor (NC)
+```
+Magnetic sensor (GPIO4)
         ↓
-ESP32 (ESPHome)
-        ↓ WiFi (local network)
-Home Assistant
+ESP32 (ESPHome firmware)
+        ↓ WiFi — local network only
+Raspberry Pi (Home Assistant)
         ↓
-Logs / Automations / Alerts / UI
+Automations → siren, push notifications, camera
+        ↓
+HA app on your phone — anywhere in the world
+```
+
+---
+
+## Why ESPHome?
+
+| | ESPHome | Arduino IDE |
+|---|---|---|
+| Code | YAML | C++ |
+| HA integration | Automatic | Manual (200+ lines) |
+| OTA updates | WiFi, no USB | USB only |
+| Time to working sensor | 5 minutes | Hours |
+
+---
+
+## Roadmap
+
+| Version | Status | Description |
+|---|---|---|
+| v1 | ✅ POC | **Proof of concept** — minimal, stable baseline. Magnetic sensor reporting open/closed to HA. Not a final product. |
+| v2 | 🔄 Planned | Alarm logic — false alarm window, warning phase, auto-reset |
+| v3 | 🔄 Planned | 4 LED indicators — full visual status system |
+| v4 | 🔄 Planned | Hardware diagnostics — CPU temp, RAM, WiFi signal |
+| v5 | 🔄 Planned | Offline mode, police effect, auto-restart |
+| v6 | 🔄 Planned | Supercapacitor power backup detection |
+
+---
+
+## File structure
+
+```
+gate-alarm/
+├── gate_alarm_v1.yaml       ← v1 ESPHome config (POC)
+├── secrets.yaml             ← credentials (never commit!)
+├── README.md                ← this file
+└── README_v1.md             ← detailed v1 documentation
+```
+
+> ⚠️ Never commit `secrets.yaml` to GitHub. Add it to `.gitignore`:
+> ```
+> secrets.yaml
+> ```
+
+---
+
+## License
+
+MIT License — free to use, modify and distribute.
+Keep original author credits.
+
+---
+
+<p align="center">
+Built with ESPHome &nbsp;·&nbsp; Runs on ESP32 &nbsp;·&nbsp; Integrates with Home Assistant
+</p>
