@@ -6,19 +6,15 @@
 > **Board:** ESP32  
 > **Version:** v1 — Proof of Concept
 
-
+----
 ## Requirements
-
-<details>
-<summary><strong>v1 requirements — click to expand</strong></summary>
-
 - ESP32 board
 - Magnetic contact sensor (kontaktron, or smth NC)
 - 5V power supply or soldered power connection
 - Home Assistant instance on local network
 - ESPHome addon installed in Home Assistant
+----
 
-<details>
 ## What it does
 
 - Connects to WiFi
