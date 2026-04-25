@@ -7,9 +7,7 @@
 
 A local-first smart gate monitoring system built on **ESP32** using **ESPHome**, designed for seamless integration with **Home Assistant**.
 
-This project focuses on simple, reliable residential gate state detection using a magnetic contact sensor and WiFi-based local communication — no cloud, no subscriptions, no third-party servers.
-
-Designed as a modular project that grows version by version, starting from a stable Proof of Concept and evolving into a more advanced gate security and automation platform.
+It tracks gate open/close state using a magnetic contact sensor and sends updates locally over WiFi. No cloud, no subscriptions, no external services.
 
 > **Author:** skiid777  
 > **Project:** ESP Gate Alarm  
@@ -20,99 +18,88 @@ Designed as a modular project that grows version by version, starting from a sta
 
 # Why This Exists
 
-The goal of this project is simple:
+This project exists to solve one simple problem: knowing the gate state at all times.
 
-To always know whether the entrance gate is open or closed.
-
-Real-life problems this solves:
-
+Real-world use cases:
 - gate left open by accident
-- unknown gate opening events
-- lack of history/logs
-- basic property awareness
+- unknown or unauthorized opening
+- no history of gate events
+- basic property monitoring
 
-Instead of expensive commercial systems, this is a low-cost, privacy-focused, fully local solution built around Home Assistant and ESPHome.
+It is a low-cost, privacy-first, fully local smart home security layer.
 
-Use cases:
-
-- residential gate monitoring
-- event logging in Home Assistant
-- automation triggers
-- future alarm system expansion
-- fully local operation
-
-This is not a certified security system replacement.  
-It is a flexible smart home security layer.
+Not a certified alarm system replacement — a flexible DIY security/automation base.
 
 ---
 
-# Overview
+# Features
 
-System flow:
-
-- magnetic contact sensor detects gate state
-- ESP32 reads sensor state
-- ESPHome sends state via WiFi
-- Home Assistant receives and stores data
-
-From there, HA can:
-
-- show state (Open / Closed)
-- log history
-- trigger automations
-- send notifications
-- integrate with cameras and alarms (future)
-
----
-
-# Hardware for v1
-
-| Component | Role |
-|---|---|
-| ESP32 Dev Board | Main controller |
-| Magnetic contact sensor (NC) | Gate state detection |
-| 5V power supply | Permanent power |
-| IP65+ enclosure | Outdoor protection |
-
-### Installation notes
-
-- installed outdoors (wall / gate area)
-- ESP inside sealed enclosure
-- only sensor wires exit box
-- external antenna improves signal stability
-- power can be:
-  - USB adapter
-  - soldered 5V PSU
-  - custom permanent wiring
-
----
-
-# Features (v1)
+## Core (v1)
 
 - real-time gate open/close detection
-- Home Assistant native integration (ESPHome)
-- local-only communication (no cloud)
-- simple NC logic (reliable state detection)
-- event tracking in HA
+- magnetic contact sensor (NC)
+- ESP32 ESPHome firmware
+- Home Assistant native integration
+- fully local operation (no cloud)
+- simple binary state (OPEN / CLOSED)
+- instant state updates via WiFi
+- event tracking in Home Assistant
+- external antenna support for stability
 - low-cost hardware design
-- foundation for future alarm system
-
-Current state model:
-
-- OPEN
-- CLOSED
+- outdoor-ready installation (IP65 enclosure)
 
 ---
 
-# Home Assistant Integration
+## Home Assistant Features
 
-Flow:
+- automatic device discovery
+- entity exposed as binary sensor
+- dashboard integration
+- automation triggers
+- event history logging
+- notification support
+- camera/siren integration ready (future use)
+
+---
+
+## Reliability Features (planned / partial)
+
+- WiFi reconnect handling
+- ESPHome watchdog support
+- boot recovery behavior
+- stable state reporting after reboot
+
+---
+
+## Security & Awareness Features (planned)
+
+- gate open too long detection
+- night-time intrusion alerts
+- activity logging timeline
+- suspicious activity detection rules
+- multiple gate support (future expansion)
+
+---
+
+## Hardware Features
+
+- ESP32 main controller
+- NC magnetic sensor input
+- 5V stable power input
+- optional USB / direct solder power
+- IP65+ outdoor enclosure
+- external antenna for range improvement
+- minimal wiring (only sensor lines exposed)
+
+---
+
+# System Architecture
 
 ```text
-Magnetic Sensor (NC)
+Magnetic Contact Sensor (NC)
         ↓
-ESP32 (ESPHome firmware)
+ESP32 (ESPHome)
         ↓ WiFi (local network)
 Home Assistant
         ↓
-Logs / Automations / Notifications
+Logs / Automations / Alerts / UI
