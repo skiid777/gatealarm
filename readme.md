@@ -58,11 +58,11 @@ From HA you can:
 | Version | Status | Description |
 |---|---|---|
 | v1 | ✅ POC | Minimal sensor — gate open/closed state in HA |
-| v2 | 🔄 Planned |
-| v3 | 🔄 Planned |
-| v4 | 🔄 Planned | 
-| v5 | 🔄 Planned | 
-| v6 | 🔄 Planned | 
+| v2 | 🔄 Planned | TOP SECRET
+| v3 | 🔄 Planned | TOP SECRET
+| v4 | 🔄 Planned | TOP SECRET
+| v5 | 🔄 Planned | TOP SECRET
+| v6 | 🔄 Planned | TOP SECRET
 
 ---
 
