@@ -25,11 +25,16 @@ Built in progressive versions — v1 is the foundation. Each release adds a new 
 
 ## Requirements
 
+<details>
+<summary><strong>v1 requirements — click to expand</strong></summary>
+
 - ESP32 board
 - Magnetic contact sensor (kontaktron, NC type)
 - 5V power supply or soldered power connection
 - Home Assistant instance on local network
 - ESPHome addon installed in Home Assistant
+
+</details>
 
 ---
 
@@ -85,10 +90,10 @@ For full details see [README_v1.md](README_v1.md)
 | Version | Status | Description |
 |---|---|---|
 | v1 | ✅ POC | Minimal sensor — gate open/closed state in HA |
-| v2 | 🔄 Planned | 
-| v3 | 🔄 Planned | 
+| v2 | 🔄 Planned |
+| v3 | 🔄 Planned |
 | v4 | 🔄 Planned | 
-| v5 | 🔄 Planned |
+| v5 | 🔄 Planned | 
 | v6 | 🔄 Planned | 
 
 ---
