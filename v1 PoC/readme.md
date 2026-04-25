@@ -60,25 +60,7 @@ ota_password: "gate123"
 
 > ⚠️ Never commit `secrets.yaml` to GitHub. Add it to `.gitignore`.
 
----
 
-## Installation
-
-1. Install **ESPHome** addon in Home Assistant
-   Settings → Add-ons → Add-on store → ESPHome → Install → Start
-
-2. Open ESPHome dashboard → top right → **Secrets** → paste your secrets
-
-3. ESPHome → **+ New device** → Edit → paste `gate_alarm_v1.yaml` → Save
-
-4. Connect ESP32 via USB → **Install** → **Plug into this computer**
-
-5. After flashing HA auto-discovers the device:
-   Settings → Integrations → ESPHome → Configure
-
-> After first flash all future updates can be done **wirelessly** — no USB needed.
-
----
 
 ## Home Assistant
 
