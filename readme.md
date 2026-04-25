@@ -50,38 +50,6 @@ From HA you can:
 
 ---
 
-## Installation
-
-<details>
-<summary><strong>How to install — click to expand</strong></summary>
-
-### 1. Install ESPHome addon in Home Assistant
-Settings → Add-ons → Add-on store → search **ESPHome** → Install → Start
-
-### 2. Set up secrets
-ESPHome dashboard → top right → **Secrets** → add:
-```yaml
-wifi_ssid: "YourNetworkName"
-wifi_password: "YourPassword"
-api_key: "generate with: openssl rand -base64 32"
-ota_password: "gate123"
-```
-
-### 3. Create device
-ESPHome → **+ New device** → Edit → paste `gate_alarm_v1.yaml` → Save
-
-### 4. Flash ESP32
-Connect via USB → ESPHome → **Install** → **Plug into this computer**
-
-### 5. Add to Home Assistant
-HA will auto-discover the device:
-Settings → Integrations → ESPHome → Configure
-
-> After first flash all updates can be done **wirelessly** — no USB needed.
-
-For full details see [README_v1.md](README_v1.md)
-
-</details>
 
 ---
 
