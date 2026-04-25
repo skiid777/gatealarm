@@ -71,8 +71,7 @@ ota_password: "gate123"
 
 ## Home Assistant
 
-<details>
-<summary><strong>What you see in HA — click to expand</strong></summary>
+What you see in HA 
 
 | Entity | Type | Description |
 |---|---|---|
