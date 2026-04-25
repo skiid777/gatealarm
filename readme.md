@@ -5,7 +5,7 @@
 ![Integration](https://img.shields.io/badge/Home%20Assistant-native-orange)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
 
-A local-first smart gate monitoring system built on **ESP-WROOM-32U** using **ESPHome**, designed for seamless integration with **Home Assistant**.
+A local-first smart gate monitoring system built on **ESP32** using **ESPHome**, designed for seamless integration with **Home Assistant**.
 
 This project focuses on simple, reliable residential gate state detection using a magnetic contact sensor and WiFi-based local communication — no cloud, no subscriptions, no third-party servers.
 
@@ -13,7 +13,7 @@ Designed as a modular project that grows version by version, starting from a sta
 
 > **Author:** skiid777  
 > **Project:** ESP Gate Alarm  
-> **Board:** ESP-WROOM-32U DevKitC  
+> **Board:** ESP32 Dev Board  
 > **Framework:** ESPHome + Arduino
 
 ---
@@ -48,7 +48,7 @@ ESP Gate Alarm starts with a very simple concept:
 
 A magnetic contact sensor detects whether the gate is open or closed.
 
-That state is sent to an **ESP-WROOM-32U**, which reports it directly to **Home Assistant** through ESPHome over WiFi.
+That state is sent to the **ESP32**, which reports it directly to **Home Assistant** through ESPHome over WiFi.
 
 From there, Home Assistant can handle:
 
@@ -70,7 +70,7 @@ Everything else builds on top of that.
 
 | Component | Role |
 |---|---|
-| ESP-WROOM-32U DevKitC + external antenna | Main controller |
+| ESP32 Dev Board + external antenna | Main controller |
 | Magnetic contact sensor (NC) | Gate open/close detection |
 | Stable 5V power supply | Permanent power source |
 | Outdoor IP65+ enclosure | Weather protection |
@@ -118,7 +118,7 @@ Simple, stable, reliable.
 ```text
 Magnetic Contact Sensor (NC)
         ↓
-ESP-WROOM-32U (ESPHome firmware)
+ESP32 (ESPHome firmware)
         ↓ WiFi — local network only
 Home Assistant Server
         ↓
