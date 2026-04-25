@@ -54,7 +54,7 @@ ESPHome replaces every `!secret` reference with the real value before compiling.
 ```yaml
 wifi_ssid: "YourNetworkName"
 wifi_password: "YourPassword"
-api_key: "generate with: openssl rand -base64 32"
+api_key: ""
 ota_password: "gate123"
 ```
 
