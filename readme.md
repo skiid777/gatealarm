@@ -46,7 +46,6 @@ From HA you can:
 - See gate state (`open` / `closed`) in real time
 - Build automations — siren, push notifications, camera
 - Monitor ESP connection status
-- Restart ESP remotely
 
 ---
 
@@ -57,7 +56,7 @@ From HA you can:
 
 | Version | Status | Description |
 |---|---|---|
-| v1 | ✅ POC | Minimal sensor — gate open/closed state in HA |
+| v1 | ✅ POC | Minimal simple version for tests |
 | v2 | 🔄 Planned | TOP SECRET
 | v3 | 🔄 Planned | TOP SECRET
 | v4 | 🔄 Planned | TOP SECRET
