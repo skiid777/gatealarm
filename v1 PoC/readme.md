@@ -6,7 +6,7 @@
 > **Board:** ESP32  
 > **Version:** v1 — Proof of Concept
 
----
+
 ## Requirements
 
 <details>
@@ -17,7 +17,8 @@
 - 5V power supply or soldered power connection
 - Home Assistant instance on local network
 - ESPHome addon installed in Home Assistant
----
+
+<details>
 ## What it does
 
 - Connects to WiFi
