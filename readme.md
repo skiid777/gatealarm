@@ -85,11 +85,11 @@ For full details see [README_v1.md](README_v1.md)
 | Version | Status | Description |
 |---|---|---|
 | v1 | ✅ POC | Minimal sensor — gate open/closed state in HA |
-| v2 | 🔄 Planned | Alarm logic |
-| v3 | 🔄 Planned | LED indicators |
-| v4 | 🔄 Planned | Hardware diagnostics |
-| v5 | 🔄 Planned | Offline mode + auto-restart |
-| v6 | 🔄 Planned | Power backup |
+| v2 | 🔄 Planned | 
+| v3 | 🔄 Planned | 
+| v4 | 🔄 Planned | 
+| v5 | 🔄 Planned |
+| v6 | 🔄 Planned | 
 
 ---
 
